@@ -25,7 +25,7 @@ public class Controller {
 			OneNoteThread thread = new OneNoteThread(Main.getFrame());
 			threads.add(thread);
 			thread.start();
-			// Ë la prima nota creata
+			// √® la prima nota creata
 			if (lastThreadCreated == null)
 				thread.setLocation(null);
 			// di fianco all'ultima creata
@@ -42,7 +42,7 @@ public class Controller {
 	}
 
 	public static void newNote(NoteData data) {
-		// location gi‡ prefissata
+		// location gi√† prefissata
 		OneNoteThread thread = new OneNoteThread(Main.getFrame(), data);
 		threads.add(thread);
 		thread.start();
@@ -50,7 +50,8 @@ public class Controller {
 	}
 
 	public static void removeNote(OneNoteThread thread) {
-		if (JOptionPane.showConfirmDialog(thread.getFrame(), "Sicuro?", "Elimina nota", JOptionPane.YES_NO_OPTION,
+		// se la nota non √® vuota posso eliminarla
+		if (thread.isWithText() && JOptionPane.showConfirmDialog(thread.getFrame(), "Sicuro?", "Elimina nota", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,
 				new ImageIcon(Main.class.getResource("/resources/images/minus_big.png"))) == 0) {
 			thread.dispose();
