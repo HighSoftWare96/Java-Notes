@@ -9,4 +9,6 @@ On this <a href="https://github.com/HighSoftWare96/Java-Notes/blob/master/JNotes
 
 Working on the english version...
 
+<h3>Preview</h3>
+
 <img src="https://github.com/HighSoftWare96/Java-Notes/blob/master/src/resources/images/preview.png" />
