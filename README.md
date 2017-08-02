@@ -5,5 +5,5 @@ on the desktop just like the Sticky Notes app. All the notes written will be sav
 with the Java serialization. With some default themes you can create notes with different colors and patterns, and every note can have a
 little descriptive title on it.
 
-On this <a href="https://github.com/HighSoftWare96/Java-Notes/blob/master/JNotes.jar">link</a> you can download the final runnable application for everyday use.
+On this <a href="https://github.com/HighSoftWare96/Java-Notes/blob/master/JNotes.jar">link</a> you can download the final runnable application for everyday use (obviously it's raccomanded the <a href="https://www.java.com/it/download/">JRE installation</a>).
 
