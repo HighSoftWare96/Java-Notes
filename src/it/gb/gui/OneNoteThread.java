@@ -69,6 +69,7 @@ public class OneNoteThread extends Thread {
 
 		frame = new JDialog(parent);
 		frame.setLocation(new Point(10, 10));
+		
 		// imposto il tema di default
 		this.setNewTheme(NoteColors.getDefaultTheme());
 
@@ -84,8 +85,13 @@ public class OneNoteThread extends Thread {
 		frame = new JDialog(parent);
 		frame.setLocation(data.getLocation());
 		frame.setSize(data.getSize());
+		
+		// impostazione tema salvato
 		this.setNewTheme(data.getTheme());
-
+		
+		// imposto il focus sul testo della nota -- TODO
+		this.noteArea.setFocusable(true);
+		
 		showTitlePanel(false);
 	}
 
