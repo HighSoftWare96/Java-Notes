@@ -8,7 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.util.HashSet;
-import java.util.*;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -36,17 +39,16 @@ public class Main {
 		notePath = System.getenv("APPDATA") + "\\JNotes\\notes.jnotes";
 		noteFile = new File(notePath);
 		
-		// TODO: controllare il funzionamento corretto
 		// Impostazione della lingua del programma
 		locale = Locale.getDefault();
 		try {
 			// imposto la lingua della risorsa
-			res = ResourceBundle.getBundle("Res", locale);
+			rsBundle = ResourceBundle.getBundle("resources.lang.Res", locale);
 		} catch (MissingResourceException e) {
 			// se non la trova metto inglese come predefinito
 			System.out.println("MissingResourceException: setting English language as default");
 			locale = new Locale("en", "US");
-			res = ResourceBungle.getBundle("Res", locale);
+			rsBundle = ResourceBundle.getBundle("Res", locale);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,7 +110,7 @@ public class Main {
 			} else // creo il catalogo da zero
 				notes = new HashSet<>();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Catalogo IO: inizializzazione dati da file", "Errore",
+			JOptionPane.showMessageDialog(null, "Errore while initializing data from file", "Critical error",
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 			System.exit(-1);
@@ -137,7 +139,7 @@ public class Main {
 				noteFile.getParentFile().mkdirs();
 				noteFile.createNewFile();
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Catalogo IO: creazione file di salvataggio", "Errore",
+				JOptionPane.showMessageDialog(null, "Error while creating output file", "Critical error",
 						JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 				System.exit(-1);
@@ -161,7 +163,7 @@ public class Main {
 			outToFile.close();
 
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Catalogo IO: salvataggio dati su file", "Errore",
+			JOptionPane.showMessageDialog(null, "Error while saving data on file", "Critical error",
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 			System.exit(-1);

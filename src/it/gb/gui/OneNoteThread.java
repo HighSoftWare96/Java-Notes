@@ -31,6 +31,7 @@ import it.gb.gui.themes.ColorComponent;
 import it.gb.gui.themes.NoteColors;
 import it.gb.lib.ComponentMover;
 import it.gb.lib.ComponentResizer;
+import it.gb.main.Main;
 import it.gb.main.NoteData;
 
 public class OneNoteThread extends Thread {
@@ -64,12 +65,12 @@ public class OneNoteThread extends Thread {
 
 	// nota vuota
 	public OneNoteThread(JFrame parent) {
-		this.title = "Senza nome";
+		this.title = Main.rsBundle.getString("s_default_title");
 		this.body = "";
 
 		frame = new JDialog(parent);
 		frame.setLocation(new Point(10, 10));
-		
+
 		// imposto il tema di default
 		this.setNewTheme(NoteColors.getDefaultTheme());
 
@@ -85,13 +86,13 @@ public class OneNoteThread extends Thread {
 		frame = new JDialog(parent);
 		frame.setLocation(data.getLocation());
 		frame.setSize(data.getSize());
-		
+
 		// impostazione tema salvato
 		this.setNewTheme(data.getTheme());
-		
+
 		// imposto il focus sul testo della nota -- TODO
 		this.noteArea.setFocusable(true);
-		
+
 		showTitlePanel(false);
 	}
 
@@ -133,7 +134,7 @@ public class OneNoteThread extends Thread {
 		titleChangeBtn.setOpaque(true);
 		titleChangeBtn.addActionListener(listenerMouse);
 		titleChangeBtn.setActionCommand(ActionCommands.titleChangeCommand);
-		titleChangeBtn.setTooltipText("Cambia il titolo");
+		titleChangeBtn.setToolTipText(Main.rsBundle.getString("t_title"));
 
 		// aggiunta nota
 		addBtn.addActionListener(listenerMouse);
@@ -143,7 +144,7 @@ public class OneNoteThread extends Thread {
 		addBtn.setPreferredSize(new Dimension(30, 30));
 		addBtn.setActionCommand(ActionCommands.newNote);
 		addBtn.setFocusable(false);
-		addBtn.setTooltipText("Nuova nota");
+		addBtn.setToolTipText(Main.rsBundle.getString("t_add"));
 
 		// X di chiusura
 		closeBtn.addActionListener(listenerMouse);
@@ -153,7 +154,7 @@ public class OneNoteThread extends Thread {
 		closeBtn.setPreferredSize(new Dimension(30, 30));
 		closeBtn.setActionCommand(ActionCommands.closeCommand);
 		closeBtn.setFocusable(false);
-		closeBtn.addTooltipText("Chiudi JNotes");
+		closeBtn.setToolTipText(Main.rsBundle.getString("t_close"));
 
 		// Rimozione
 		removeBtn.addActionListener(listenerMouse);
@@ -163,7 +164,7 @@ public class OneNoteThread extends Thread {
 		removeBtn.setPreferredSize(new Dimension(30, 30));
 		removeBtn.setActionCommand(ActionCommands.remove);
 		removeBtn.setFocusable(false);
-		removeBtn.setTooltipText("Elimina nota");
+		removeBtn.setToolTipText(Main.rsBundle.getString("t_delete"));
 
 		// Bottone dei colori
 		customizeBtn.addActionListener(listenerMouse);
@@ -174,7 +175,7 @@ public class OneNoteThread extends Thread {
 		customizeBtn.setActionCommand(ActionCommands.customizeCommand);
 		customizeBtn.addActionListener(listenerMouse);
 		customizeBtn.setFocusable(false);
-		customizeBtn.setTooltipText("Personalizza");
+		customizeBtn.setToolTipText(Main.rsBundle.getString("t_customize"));
 
 		// buttonsMenu aggiunta pulsanti
 		buttonsMenu.add(customizeBtn);

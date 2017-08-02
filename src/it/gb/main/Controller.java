@@ -51,7 +51,7 @@ public class Controller {
 
 	public static void removeNote(OneNoteThread thread) {
 		// se la nota non è vuota posso eliminarla
-		if (thread.isWithText() && JOptionPane.showConfirmDialog(thread.getFrame(), "Sicuro?", "Elimina nota", JOptionPane.YES_NO_OPTION,
+		if (thread.isWithText() && JOptionPane.showConfirmDialog(thread.getFrame(), Main.rsBundle.getString("s_delete_text"), Main.rsBundle.getString("s_delete_title"), JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,
 				new ImageIcon(Main.class.getResource("/resources/images/minus_big.png"))) == 0) {
 			thread.dispose();
