@@ -127,6 +127,7 @@ public class OneNoteThread extends Thread {
 		titleChangeBtn.setOpaque(true);
 		titleChangeBtn.addActionListener(listenerMouse);
 		titleChangeBtn.setActionCommand(ActionCommands.titleChangeCommand);
+		titleChangeBtn.setTooltipText("Cambia il titolo");
 
 		// aggiunta nota
 		addBtn.addActionListener(listenerMouse);
@@ -136,6 +137,7 @@ public class OneNoteThread extends Thread {
 		addBtn.setPreferredSize(new Dimension(30, 30));
 		addBtn.setActionCommand(ActionCommands.newNote);
 		addBtn.setFocusable(false);
+		addBtn.setTooltipText("Nuova nota");
 
 		// X di chiusura
 		closeBtn.addActionListener(listenerMouse);
@@ -145,6 +147,7 @@ public class OneNoteThread extends Thread {
 		closeBtn.setPreferredSize(new Dimension(30, 30));
 		closeBtn.setActionCommand(ActionCommands.closeCommand);
 		closeBtn.setFocusable(false);
+		closeBtn.addTooltipText("Chiudi JNotes");
 
 		// Rimozione
 		removeBtn.addActionListener(listenerMouse);
@@ -154,6 +157,7 @@ public class OneNoteThread extends Thread {
 		removeBtn.setPreferredSize(new Dimension(30, 30));
 		removeBtn.setActionCommand(ActionCommands.remove);
 		removeBtn.setFocusable(false);
+		removeBtn.setTooltipText("Elimina nota");
 
 		// Bottone dei colori
 		customizeBtn.addActionListener(listenerMouse);
@@ -164,6 +168,7 @@ public class OneNoteThread extends Thread {
 		customizeBtn.setActionCommand(ActionCommands.customizeCommand);
 		customizeBtn.addActionListener(listenerMouse);
 		customizeBtn.setFocusable(false);
+		customizeBtn.setTooltipText("Personalizza");
 
 		// buttonsMenu aggiunta pulsanti
 		buttonsMenu.add(customizeBtn);
