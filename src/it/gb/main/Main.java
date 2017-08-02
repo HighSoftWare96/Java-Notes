@@ -1,7 +1,5 @@
 package it.gb.main;
 
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,28 +12,35 @@ import java.util.HashSet;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import it.gb.gui.NoteColors;
 import it.gb.gui.OneNoteThread;
 import it.gb.gui.listeners.WindowListener;
+import it.gb.gui.themes.NoteColors;
 
 public class Main {
 
 	private static ServerSocket socketOffline;
-	private static JFrame mainInvisibleFrame = new JFrame("JNotes");
-	private static final String notePath = System.getenv("APPDATA") + "\\JNotes\\notes.jnotes";
-	private static final File noteFile = new File(notePath);
-	private static HashSet<OneNoteThread> threads = new HashSet<>();
-	private static OneNoteThread lastThreadCreated = null;
+	private static JFrame mainInvisibleFrame;
+	private static String notePath;
+	private static File noteFile;
 
 	public static void main(String[] args) {
+
+		// inizializzazione dei dati principali
+		notePath = System.getenv("APPDATA") + "\\JNotes\\notes.jnotes";
+		noteFile = new File(notePath);
+
+		// impostazione della grafica simile al sistema di supporto
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		// creazione di una socket fittizia per evitare altre istanze del
+		// programma nel sistema
 		try {
 			socketOffline = new ServerSocket(8765);
 		} catch (IOException e) {
@@ -43,18 +48,28 @@ public class Main {
 			System.exit(0);
 		}
 
-		buildGUI();
-		findNotes();
-		mainInvisibleFrame.setVisible(true);
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				// inizializzo i temi
+				NoteColors.initilize();
+				buildGUI();
+				findNotes();
+				mainInvisibleFrame.setVisible(true);
+			}
+		});
 	}
 
 	private static void buildGUI() {
-		// inizializzo i temi
-		NoteColors.initilize();
+		mainInvisibleFrame = new JFrame("JNotes");
 		mainInvisibleFrame.addWindowListener(new WindowListener());
 		mainInvisibleFrame.setIconImage(new ImageIcon(Main.class.getResource("/resources/images/icon.png")).getImage());
 		mainInvisibleFrame.setSize(0, 0);
 		mainInvisibleFrame.setUndecorated(true);
+	}
+	
+	public static JFrame getFrame() {
+		return mainInvisibleFrame;
 	}
 
 	private static void findNotes() {
@@ -81,18 +96,18 @@ public class Main {
 		}
 
 		for (NoteData item : notes) {
-			newNote(item);
+			Controller.newNote(item);
 		}
 
 		// nessuna nota recuperata
 		if (notes.size() == 0)
-			newNote();
+			Controller.newNote();
 	}
 
 	private static void saveNotes() {
 		HashSet<NoteData> notes = new HashSet<>();
 
-		for (OneNoteThread item : threads) {
+		for (OneNoteThread item : Controller.getThreads()) {
 			NoteData temp = item.getData();
 			if (!temp.getText().equals(""))
 				notes.add(item.getData());
@@ -135,40 +150,6 @@ public class Main {
 
 	}
 
-	public static void newNote() {
-		if (lastThreadCreated == null || lastThreadCreated.isWithText()) {
-			// se l'ultimo ha del testo allora ne creo una nuova
-			OneNoteThread thread = new OneNoteThread(mainInvisibleFrame);
-			threads.add(thread);
-			thread.start();
-			// è la prima nota creata
-			if (lastThreadCreated == null)
-				thread.setLocation(null);
-			// di fianco all'ultima creata
-			else {
-				Point location = lastThreadCreated.getLocation();
-				location.setLocation(new Point(
-						(int) ((location.getX() + 310)
-								% (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 200)),
-						(int) location.getY()));
-				thread.setLocation(location);
-			}
-			lastThreadCreated = thread;
-		}
-	}
-
-	public static void newNote(NoteData data) {
-		// location già prefissata
-		OneNoteThread thread = new OneNoteThread(mainInvisibleFrame, data);
-		threads.add(thread);
-		thread.start();
-		lastThreadCreated = thread;
-	}
-
-	public static void exit(int code, OneNoteThread thread) {
-		saveAndClose(code);
-	}
-
 	public static void saveAndClose(int code) {
 		saveNotes();
 		try {
@@ -177,16 +158,5 @@ public class Main {
 			e.printStackTrace();
 		}
 		System.exit(code);
-	}
-
-	public static void removeNote(OneNoteThread thread) {
-		if (JOptionPane.showConfirmDialog(thread.frame, "Sicuro?", "Elimina nota", JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE,
-				new ImageIcon(Main.class.getResource("/resources/images/minus_big.png"))) == 0) {
-			thread.dispose();
-			threads.remove(thread);
-			if (threads.size() == 0)
-				saveAndClose(0);
-		}
 	}
 }

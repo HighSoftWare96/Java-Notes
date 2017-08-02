@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.io.Serializable;
 
-import it.gb.gui.ColorComponent;
+import it.gb.gui.themes.ColorComponent;
 
 public class NoteData implements Serializable {
 

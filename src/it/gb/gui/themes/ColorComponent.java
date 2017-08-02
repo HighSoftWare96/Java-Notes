@@ -1,4 +1,4 @@
-package it.gb.gui;
+package it.gb.gui.themes;
 
 import java.awt.Color;
 import java.io.Serializable;
