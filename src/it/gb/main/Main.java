@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.util.HashSet;
-
+import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,7 +20,11 @@ import it.gb.gui.listeners.WindowListener;
 import it.gb.gui.themes.NoteColors;
 
 public class Main {
-
+	
+	// locale e insieme di risorse linguistiche
+	private static Locale locale;
+	public static ResourceBundle rsBundle;
+	
 	private static ServerSocket socketOffline;
 	private static JFrame mainInvisibleFrame;
 	private static String notePath;
@@ -31,14 +35,22 @@ public class Main {
 		// inizializzazione dei dati principali
 		notePath = System.getenv("APPDATA") + "\\JNotes\\notes.jnotes";
 		noteFile = new File(notePath);
-
-		// impostazione della grafica simile al sistema di supporto
+		
+		// TODO: controllare il funzionamento corretto
+		// Impostazione della lingua del programma
+		locale = Locale.getDefault();
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			// imposto la lingua della risorsa
+			res = ResourceBundle.getBundle("Res", locale);
+		} catch (MissingResourceException e) {
+			// se non la trova metto inglese come predefinito
+			System.out.println("MissingResourceException: setting English language as default");
+			locale = new Locale("en", "US");
+			res = ResourceBungle.getBundle("Res", locale);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+			
 		// creazione di una socket fittizia per evitare altre istanze del
 		// programma nel sistema
 		try {
@@ -46,6 +58,13 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println("Another instance is probably running...");
 			System.exit(0);
+		}
+		
+		// impostazione della grafica simile al sistema di supporto
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		SwingUtilities.invokeLater(new Runnable() {
