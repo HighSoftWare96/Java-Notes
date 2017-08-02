@@ -6,4 +6,6 @@ with the Java serialization. With some default themes you can create notes with 
 little descriptive title on it.
 
 On this <a href="https://github.com/HighSoftWare96/Java-Notes/blob/master/JNotes.jar">link</a> you can download the final runnable application for everyday use (obviously it's raccomanded the <a href="https://www.java.com/it/download/">JRE installation</a>).
+
+
 <img src="https://github.com/HighSoftWare96/Java-Notes/blob/master/src/resources/images/preview.png" />
