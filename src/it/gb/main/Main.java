@@ -31,7 +31,7 @@ public class Main {
 	private static ServerSocket socketOffline;
 	private static JFrame mainInvisibleFrame;
 	private static String notePath;
-	private static File noteFile;
+	public static File noteFile;
 
 	public static void main(String[] args) {
 
@@ -41,6 +41,7 @@ public class Main {
 		
 		// Impostazione della lingua del programma
 		locale = Locale.getDefault();
+
 		try {
 			// imposto la lingua della risorsa
 			rsBundle = ResourceBundle.getBundle("resources.lang.Res", locale);
@@ -79,6 +80,9 @@ public class Main {
 				mainInvisibleFrame.setVisible(true);
 			}
 		});
+		
+		// creazione di un thread che salva ogni 20 secondi
+		new SaverThread().start();
 	}
 
 	private static void buildGUI() {
@@ -125,54 +129,8 @@ public class Main {
 			Controller.newNote();
 	}
 
-	private static void saveNotes() {
-		HashSet<NoteData> notes = new HashSet<>();
-
-		for (OneNoteThread item : Controller.getThreads()) {
-			NoteData temp = item.getData();
-			if (!temp.getText().equals(""))
-				notes.add(item.getData());
-		}
-
-		if (!noteFile.exists()) { // se il file non esiste lo creo
-			try {
-				noteFile.getParentFile().mkdirs();
-				noteFile.createNewFile();
-			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Error while creating output file", "Critical error",
-						JOptionPane.ERROR_MESSAGE);
-				e.printStackTrace();
-				System.exit(-1);
-			}
-		}
-
-		try {
-			FileOutputStream outToFile;
-			ObjectOutputStream byteStreamToSave;
-
-			// creo un file di output (stesso di prima)
-			outToFile = new FileOutputStream(noteFile);
-
-			// creo uno stream di output che punta al file
-			byteStreamToSave = new ObjectOutputStream(outToFile);
-
-			// scrivo l'oggetto nel file in modo da poterlo recuperare la
-			// prossima volta
-			byteStreamToSave.writeObject((Object) notes);
-			byteStreamToSave.close();
-			outToFile.close();
-
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error while saving data on file", "Critical error",
-					JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-			System.exit(-1);
-		}
-
-	}
-
 	public static void saveAndClose(int code) {
-		saveNotes();
+		SaverThread.saveAll();
 		try {
 			socketOffline.close();
 		} catch (Exception e) {
