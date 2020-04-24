@@ -45,12 +45,12 @@ public class Main {
 
 		try {
 			// imposto la lingua della risorsa
-			rsBundle = ResourceBundle.getBundle("resources.lang.Res", locale);
+			rsBundle = ResourceBundle.getBundle("it.gb.lang.Res", locale);
 		} catch (MissingResourceException e) {
 			// se non la trova metto inglese come predefinito
 			System.out.println("MissingResourceException: setting English language as default");
 			locale = new Locale("en", "US");
-			rsBundle = ResourceBundle.getBundle("Res", locale);
+			rsBundle = ResourceBundle.getBundle("it.gb.lang.Res", locale);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

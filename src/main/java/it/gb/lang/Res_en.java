@@ -1,4 +1,4 @@
-package resources.lang;
+package it.gb.lang;
 
 import java.util.*;
 
