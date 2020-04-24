@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class NoteColors {
-	// color[0] = maincolor // color[1] = backColor // color[2] = secColor
+	// color[0] = mainColor // color[1] = backColor // color[2] = secColor
 	private static ArrayList<ColorComponent> colors = new ArrayList<>();
 	private static NoteColors instance = null;
 

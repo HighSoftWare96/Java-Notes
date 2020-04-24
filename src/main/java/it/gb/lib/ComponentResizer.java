@@ -47,7 +47,7 @@ public class ComponentResizer extends MouseAdapter
 	private Dimension maximumSize = MAXIMUM_SIZE;
 
 	/**
-	 *  Convenience contructor. All borders are resizable in increments of
+	 *  Convenience constructor. All borders are resizable in increments of
 	 *  a single pixel. Components must be registered separately.
 	 */
 	public ComponentResizer()
@@ -56,7 +56,7 @@ public class ComponentResizer extends MouseAdapter
 	}
 
 	/**
-	 *  Convenience contructor. All borders are resizable in increments of
+	 *  Convenience constructor. All borders are resizable in increments of
 	 *  a single pixel. Components can be registered when the class is created
 	 *  or they can be registered separately afterwards.
 	 *
@@ -68,7 +68,7 @@ public class ComponentResizer extends MouseAdapter
 	}
 
 	/**
-	 *  Convenience contructor. Eligible borders are resisable in increments of
+	 *  Convenience constructor. Eligible borders are resizable in increments of
 	 *  a single pixel. Components can be registered when the class is created
 	 *  or they can be registered separately afterwards.
 	 *
@@ -210,7 +210,7 @@ public class ComponentResizer extends MouseAdapter
 	 *  the component is changed. The border will snap to the size once
 	 *  dragging has passed the halfway mark.
 	 *
-	 *  @param snapSize Dimension object allows you to separately spcify a
+	 *  @param snapSize Dimension object allows you to separately specify a
 	 *                  horizontal and vertical snap size.
 	 */
 	public void setSnapSize(Dimension snapSize)
@@ -358,7 +358,7 @@ public class ComponentResizer extends MouseAdapter
 
 	protected void changeBounds(Component source, int direction, Rectangle bounds, Point pressed, Point current)
 	{
-		//  Start with original locaton and size
+		//  Start with original location and size
 
 		int x = bounds.x;
 		int y = bounds.y;

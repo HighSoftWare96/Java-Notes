@@ -102,7 +102,7 @@ public class Main {
 			} else
 				notes = new HashSet<>();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Errore while initializing data from file", "Critical error",
+			JOptionPane.showMessageDialog(null, "Error while initializing data from file", "Critical error",
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 			System.exit(-1);
