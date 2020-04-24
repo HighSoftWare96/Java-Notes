@@ -33,7 +33,7 @@ public class SaverThread extends Thread {
 
 		if (!Main.noteFile.exists()) { // se il file non esiste lo creo
 			try {
-				Main.noteFile.getParentFile().mkdirs();
+				Main.noteFile.getCanonicalFile().getParentFile().mkdirs();
 				Main.noteFile.createNewFile();
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Error while creating output file", "Critical error",

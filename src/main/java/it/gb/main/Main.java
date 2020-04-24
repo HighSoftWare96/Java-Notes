@@ -35,8 +35,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		// inizializzazione dei dati principali
-		notePath = System.getenv("APPDATA") + "\\JNotes\\notes.jnotes";
+		// TODO: make this a command line parameter instead, but just use the current directory for now
+//		notePath = System.getenv("APPDATA") + "\\JNotes\\notes.jnotes";
+		notePath = "notes.jnotes";
 		noteFile = new File(notePath);
 		
 		// Impostazione della lingua del programma

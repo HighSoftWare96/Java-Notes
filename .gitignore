@@ -1,3 +1,4 @@
+*.jnotes
 /target/
 
 # intellij files
