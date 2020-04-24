@@ -1,16 +1,15 @@
 package it.gb.gui.listeners;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import it.gb.gui.ActionCommands;
 import it.gb.gui.OneNoteThread;
 import it.gb.main.Controller;
-import it.gb.main.Main;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class NoteThreadMouseListener implements ActionListener {
 
-	private OneNoteThread instance;
+	private final OneNoteThread instance;
 
 	public NoteThreadMouseListener(OneNoteThread instance) {
 		this.instance = instance;

@@ -1,28 +1,5 @@
 package it.gb.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
 import it.gb.gui.listeners.ColorSelectionListener;
 import it.gb.gui.listeners.NoteThreadMouseListener;
 import it.gb.gui.listeners.TitleChangeListener;
@@ -33,6 +10,11 @@ import it.gb.lib.ComponentMover;
 import it.gb.lib.ComponentResizer;
 import it.gb.main.Main;
 import it.gb.main.NoteData;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 
 public class OneNoteThread extends Thread {
 
@@ -94,12 +76,7 @@ public class OneNoteThread extends Thread {
 	}
 
 	public void run() {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				OneNoteThread.this.buildGUI();
-			}
-		});
+		SwingUtilities.invokeLater(this::buildGUI);
 	}
 
 	public void buildGUI() {
@@ -321,7 +298,7 @@ public class OneNoteThread extends Thread {
 		if (b) {
 			this.titleChangeBtn.setVisible(false);
 			this.titlePanel.setVisible(true);
-			this.frame.setSize(new Dimension(300, frame.getHeight() < 350 ? 350 : frame.getHeight()));
+			this.frame.setSize(new Dimension(300, Math.max(frame.getHeight(), 350)));
 		} else {
 			titlePanel.setVisible(false);
 			titleChangeBtn.setVisible(true);

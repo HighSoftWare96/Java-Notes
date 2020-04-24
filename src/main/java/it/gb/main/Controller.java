@@ -12,7 +12,7 @@ import it.gb.gui.OneNoteThread;
 public class Controller {
 
 	private static OneNoteThread lastThreadCreated = null;
-	private static HashSet<OneNoteThread> threads = new HashSet<>();
+	private static final HashSet<OneNoteThread> threads = new HashSet<>();
 
 	
 	public static HashSet<OneNoteThread> getThreads() {

@@ -7,7 +7,7 @@ import it.gb.gui.OneNoteThread;
 
 public class TitleChangeListener extends KeyAdapter {
 
-	private OneNoteThread instance;
+	private final OneNoteThread instance;
 
 	public TitleChangeListener(OneNoteThread instance) {
 		this.instance = instance;
@@ -15,9 +15,9 @@ public class TitleChangeListener extends KeyAdapter {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		this.instance.setNewTitle();
+		instance.setNewTitle();
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			this.instance.confirmTitle();
+			instance.confirmTitle();
 		}
 	}
 }

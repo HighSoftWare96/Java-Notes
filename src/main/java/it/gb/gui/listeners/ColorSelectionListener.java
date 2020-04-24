@@ -8,7 +8,7 @@ import it.gb.gui.themes.NoteColors;
 
 public class ColorSelectionListener implements ActionListener {
 	
-	private OneNoteThread instance;
+	private final OneNoteThread instance;
 	
 	public ColorSelectionListener(OneNoteThread instance) {
 		this.instance = instance;

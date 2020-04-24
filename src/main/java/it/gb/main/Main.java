@@ -26,14 +26,13 @@ public class Main {
 	
 	private static ServerSocket socketOffline;
 	private static JFrame mainInvisibleFrame;
-	private static String notePath;
 	public static File noteFile;
 
 	public static void main(String[] args) {
 
 		// TODO: make this a command line parameter instead, but just use the current directory for now
 //		notePath = System.getenv("APPDATA") + "\\JNotes\\notes.jnotes";
-		notePath = "notes.jnotes";
+		String notePath = "notes.jnotes";
 		noteFile = new File(notePath);
 		
 		locale = Locale.getDefault();
@@ -62,14 +61,11 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				NoteColors.initialize();
-				buildGUI();
-				findNotes();
-				mainInvisibleFrame.setVisible(true);
-			}
+		SwingUtilities.invokeLater(() -> {
+			NoteColors.initialize();
+			buildGUI();
+			findNotes();
+			mainInvisibleFrame.setVisible(true);
 		});
 		
 		new SaverThread().start();

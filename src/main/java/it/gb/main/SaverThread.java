@@ -51,7 +51,7 @@ public class SaverThread extends Thread {
 
 			byteStreamToSave = new ObjectOutputStream(outToFile);
 
-			byteStreamToSave.writeObject((Object) notes);
+			byteStreamToSave.writeObject(notes);
 			byteStreamToSave.close();
 			outToFile.close();
 

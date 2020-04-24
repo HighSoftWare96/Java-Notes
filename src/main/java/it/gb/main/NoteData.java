@@ -9,11 +9,11 @@ import it.gb.gui.themes.ColorComponent;
 public class NoteData implements Serializable {
 
 	private static final long serialVersionUID = -41657801163597106L;
-	private String noteText;
-	private String noteTitle;
-	private Point locationOnScreen;
-	private ColorComponent theme;
-	private Dimension size;
+	private final String noteText;
+	private final String noteTitle;
+	private final Point locationOnScreen;
+	private final ColorComponent theme;
+	private final Dimension size;
 
 	public NoteData(String title, String text, Point location, ColorComponent theme, Dimension size) {
 		this.noteText = text;
@@ -24,23 +24,23 @@ public class NoteData implements Serializable {
 	}
 
 	public Dimension getSize() {
-		return this.size;
+		return size;
 	}
 
 	public String getTitle() {
-		return this.noteTitle;
+		return noteTitle;
 	}
 
 	public String getText() {
-		return this.noteText;
+		return noteText;
 	}
 
 	public Point getLocation() {
-		return this.locationOnScreen;
+		return locationOnScreen;
 	}
 
 	public ColorComponent getTheme() {
-		return this.theme;
+		return theme;
 	}
 
 }

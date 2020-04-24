@@ -135,7 +135,7 @@ public class ComponentMover extends MouseAdapter
 	 *  This will prevent these events from being confused with a
 	 *  MouseMotionListener that supports component resizing.
 	 *
-	 *  @param  dragInsets
+	 *  @param  dragInsets  the drag insets
 	 */
 	public void setDragInsets(Insets dragInsets)
 	{
@@ -158,7 +158,7 @@ public class ComponentMover extends MouseAdapter
 	 *  component must be contained within the parent. Negative values means the
 	 *  component can be moved outside the parent.
 	 *
-	 *  @param  edgeInsets
+	 *  @param  edgeInsets  the edge insets
 	 */
 	public void setEdgeInsets(Insets edgeInsets)
 	{
@@ -364,7 +364,7 @@ public class ComponentMover extends MouseAdapter
 		{
 			if (destination instanceof JComponent)
 			{
-				((JComponent)destination).revalidate();
+				destination.revalidate();
 			}
 			else
 			{

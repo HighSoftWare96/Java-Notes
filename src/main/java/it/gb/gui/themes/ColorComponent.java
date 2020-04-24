@@ -6,10 +6,10 @@ import java.io.Serializable;
 public class ColorComponent implements Serializable {
 
 	private static final long serialVersionUID = -5239977092938421570L;
-	private Color mainColor;
-	private Color backColor;
-	private Color secColor;
-	private String command;
+	private final Color mainColor;
+	private final Color backColor;
+	private final Color secColor;
+	private final String command;
 
 	public ColorComponent(Color main, Color back, Color sec, String command) {
 		this.mainColor = main;
