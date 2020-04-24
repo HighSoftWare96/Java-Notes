@@ -2,6 +2,7 @@ package it.gb.lang;
 
 import java.util.*;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Res_it extends ListResourceBundle {
 
 	private static final Object[][] contents = { { "s_default_title", "Senza nome" }, { "t_title", "Cambia il titolo" },
