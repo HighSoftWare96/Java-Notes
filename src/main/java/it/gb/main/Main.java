@@ -89,7 +89,7 @@ public class Main {
 	private static void buildGUI() {
 		mainInvisibleFrame = new JFrame("JNotes");
 		mainInvisibleFrame.addWindowListener(new WindowListener());
-		mainInvisibleFrame.setIconImage(new ImageIcon(Main.class.getResource("/resources/images/icon.png")).getImage());
+		mainInvisibleFrame.setIconImage(new ImageIcon(Main.class.getResource("/images/icon.png")).getImage());
 		mainInvisibleFrame.setSize(0, 0);
 		mainInvisibleFrame.setUndecorated(true);
 	}

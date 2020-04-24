@@ -49,17 +49,17 @@ public class OneNoteThread extends Thread {
 	private JPanel buttonsMenu = new JPanel(new FlowLayout());
 	private JPanel centerPanel = new JPanel(new FlowLayout());
 
-	private JButton closeBtn = new JButton(new ImageIcon(this.getClass().getResource("/resources/images/x.png")));
+	private JButton closeBtn = new JButton(new ImageIcon(this.getClass().getResource("/images/x.png")));
 	private JLabel titleLabel = new JLabel();
 
 	private JTextField titleField = new JTextField();
 	private JButton customizeBtn = new JButton(
-			new ImageIcon(this.getClass().getResource("/resources/images/customize.png")));
-	private JButton titleBtn = new JButton(new ImageIcon(this.getClass().getResource("/resources/images/ok.png")));
-	private JButton addBtn = new JButton(new ImageIcon(this.getClass().getResource("/resources/images/plus.png")));
+			new ImageIcon(this.getClass().getResource("/images/customize.png")));
+	private JButton titleBtn = new JButton(new ImageIcon(this.getClass().getResource("/images/ok.png")));
+	private JButton addBtn = new JButton(new ImageIcon(this.getClass().getResource("/images/plus.png")));
 	private JButton titleChangeBtn = new JButton(
-			new ImageIcon(this.getClass().getResource("/resources/images/change.png")));
-	private JButton removeBtn = new JButton(new ImageIcon(this.getClass().getResource("/resources/images/minus.png")));
+			new ImageIcon(this.getClass().getResource("/images/change.png")));
+	private JButton removeBtn = new JButton(new ImageIcon(this.getClass().getResource("/images/minus.png")));
 	private JTextPane noteArea = new JTextPane();
 	private JScrollPane noteAreaContainer = new JScrollPane(noteArea);
 
@@ -225,7 +225,7 @@ public class OneNoteThread extends Thread {
 		}
 
 		// bottone di conferma del tema selezionato
-		JButton colorsOkBtn = new JButton(new ImageIcon(this.getClass().getResource("/resources/images/ok.png")));
+		JButton colorsOkBtn = new JButton(new ImageIcon(this.getClass().getResource("/images/ok.png")));
 		colorsOkBtn.setPreferredSize(new Dimension(30, 30));
 		colorsOkBtn.setActionCommand(ActionCommands.customizeOkCommand);
 		colorsOkBtn.setBackground(Color.WHITE);

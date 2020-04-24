@@ -53,7 +53,7 @@ public class Controller {
 		// se la nota non è vuota posso eliminarla
 		if (thread.isWithText() && JOptionPane.showConfirmDialog(thread.getFrame(), Main.rsBundle.getString("s_delete_text"), Main.rsBundle.getString("s_delete_title"), JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,
-				new ImageIcon(Main.class.getResource("/resources/images/minus_big.png"))) == 0) {
+				new ImageIcon(Main.class.getResource("/images/minus_big.png"))) == 0) {
 			thread.dispose();
 			threads.remove(thread);
 			if (threads.size() == 0)
