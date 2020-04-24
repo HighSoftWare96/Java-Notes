@@ -1,1 +1,5 @@
 /target/
+
+# intellij files
+/.idea/
+/*.iml
