@@ -31,7 +31,7 @@ public class NoteColors {
 		return instance;
 	}
 
-	public static void initilize() {
+	public static void initialize() {
 		if (instance == null)
 			instance = new NoteColors();
 	}

@@ -2,10 +2,8 @@ package it.gb.main;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.util.HashSet;
 import java.util.Locale;
@@ -18,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import it.gb.gui.OneNoteThread;
 import it.gb.gui.listeners.WindowListener;
 import it.gb.gui.themes.NoteColors;
 
@@ -68,7 +65,7 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				NoteColors.initilize();
+				NoteColors.initialize();
 				buildGUI();
 				findNotes();
 				mainInvisibleFrame.setVisible(true);
