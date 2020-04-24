@@ -63,7 +63,7 @@ public class OneNoteThread extends Thread {
 	private JTextPane noteArea = new JTextPane();
 	private JScrollPane noteAreaContainer = new JScrollPane(noteArea);
 
-	// nota vuota
+	// empty Note
 	public OneNoteThread(JFrame parent) {
 		this.title = Main.rsBundle.getString("s_default_title");
 		this.body = "";
@@ -71,15 +71,13 @@ public class OneNoteThread extends Thread {
 		frame = new JDialog(parent);
 		frame.setLocation(new Point(10, 10));
 
-		// imposto il tema di default
 		this.setNewTheme(NoteColors.getDefaultTheme());
 
 		showTitlePanel(true);
 	}
 
-	// nota da file
+	// already-filled Note
 	public OneNoteThread(JFrame parent, NoteData data) {
-		// retrieving data from the obj passed
 		this.title = data.getTitle();
 		this.body = data.getText();
 
@@ -87,10 +85,9 @@ public class OneNoteThread extends Thread {
 		frame.setLocation(data.getLocation());
 		frame.setSize(data.getSize());
 
-		// impostazione tema salvato
 		this.setNewTheme(data.getTheme());
 
-		// imposto il focus sul testo della nota -- TODO
+		// TODO: set focus on the note text
 		this.noteArea.setFocusable(true);
 
 		showTitlePanel(false);
@@ -111,23 +108,20 @@ public class OneNoteThread extends Thread {
 		frame.addWindowListener(new WindowListener());
 		frame.getRootPane().setBorder(new LineBorder(Color.WHITE));
 
-		// assegnazione variabili alla GUI
 		titleLabel.setText(this.title);
 		titleLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
 		titleLabel.setPreferredSize(new Dimension(115, 40));
 		noteArea.setText(this.body);
 		titleField.setText(this.title);
-		// imposto il corpo della nota
 		this.noteArea.setText(this.body);
 
-		// pannello SUPERIORE =================
+		// START OF TOP PANEL
 		titleLabel.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 
-		// allocazione principali listener
 		NoteThreadMouseListener listenerMouse = new NoteThreadMouseListener(this);
 
-		// Pannello bottoni principali
-		// Cambio titolo
+		// START OF TOP-BUTTON PANEL
+		// change title button
 		titleChangeBtn.setPreferredSize(new Dimension(30, 30));
 		titleChangeBtn.setBackground(Color.WHITE);
 		titleChangeBtn.setContentAreaFilled(false);
@@ -136,7 +130,7 @@ public class OneNoteThread extends Thread {
 		titleChangeBtn.setActionCommand(ActionCommands.titleChangeCommand);
 		titleChangeBtn.setToolTipText(Main.rsBundle.getString("t_title"));
 
-		// aggiunta nota
+		// new note button
 		addBtn.addActionListener(listenerMouse);
 		addBtn.setBackground(Color.WHITE);
 		addBtn.setContentAreaFilled(false);
@@ -146,7 +140,7 @@ public class OneNoteThread extends Thread {
 		addBtn.setFocusable(false);
 		addBtn.setToolTipText(Main.rsBundle.getString("t_add"));
 
-		// X di chiusura
+		// close button
 		closeBtn.addActionListener(listenerMouse);
 		closeBtn.setBackground(Color.WHITE);
 		closeBtn.setContentAreaFilled(false);
@@ -156,7 +150,7 @@ public class OneNoteThread extends Thread {
 		closeBtn.setFocusable(false);
 		closeBtn.setToolTipText(Main.rsBundle.getString("t_close"));
 
-		// Rimozione
+		// delete note button
 		removeBtn.addActionListener(listenerMouse);
 		removeBtn.setBackground(Color.WHITE);
 		removeBtn.setContentAreaFilled(false);
@@ -166,7 +160,7 @@ public class OneNoteThread extends Thread {
 		removeBtn.setFocusable(false);
 		removeBtn.setToolTipText(Main.rsBundle.getString("t_delete"));
 
-		// Bottone dei colori
+		// change color button
 		customizeBtn.addActionListener(listenerMouse);
 		customizeBtn.setPreferredSize(new Dimension(30, 30));
 		customizeBtn.setBackground(Color.WHITE);
@@ -177,39 +171,41 @@ public class OneNoteThread extends Thread {
 		customizeBtn.setFocusable(false);
 		customizeBtn.setToolTipText(Main.rsBundle.getString("t_customize"));
 
-		// buttonsMenu aggiunta pulsanti
+		// button panel
 		buttonsMenu.add(customizeBtn);
 		buttonsMenu.add(titleChangeBtn);
 		buttonsMenu.add(removeBtn);
 		buttonsMenu.add(addBtn);
 		buttonsMenu.add(closeBtn);
+		// END OF TOP-BUTTON PANEL
 
-		// FUNZIONI da LIBRERIA
-		// dragging system (da libreria)
+		// GUI FUNCTIONS
+		// dragging
 		ComponentMover cm = new ComponentMover(JDialog.class, northPanel);
 		cm.setChangeCursor(false);
-		// resizing system (da libreria)
+		// resizing
 		ComponentResizer cr = new ComponentResizer();
 		cr.registerComponent(frame);
 		cr.setSnapSize(new Dimension(10, 10));
 		cr.setMinimumSize(new Dimension(300, 300));
 		cr.setMaximumSize(new Dimension(300, 1000));
 
-		// aggiunta elementi al pannello superiore
+		// add them to the top panel
 		northPanel.add(titleLabel, BorderLayout.WEST);
 		northPanel.add(buttonsMenu, BorderLayout.EAST);
+		// END OF TOP PANEL
 
-		// Pannello CENTRALE ==================
-		// PANNELLO MODIFICA COLORI
+		// START OF CENTRAL PANEL
+		// Color panel
 		colorsPanel.setPreferredSize(new Dimension(300, 50));
 		colorsPanel.setVisible(false);
 
-		// inserimento temi
+		// get themes
 		NoteColors colorLib = NoteColors.getInstance();
 
 		ColorSelectionListener themeListener = new ColorSelectionListener(this);
 
-		// un bottone per ogni tema
+		// loop over themes
 		for (ColorComponent item : colorLib.getColors()) {
 			JButton tempBtn = new JButton();
 			tempBtn.setPreferredSize(new Dimension(30, 30));
@@ -224,7 +220,7 @@ public class OneNoteThread extends Thread {
 			colorsPanel.add(tempBtn);
 		}
 
-		// bottone di conferma del tema selezionato
+		// confirm button
 		JButton colorsOkBtn = new JButton(new ImageIcon(this.getClass().getResource("/images/ok.png")));
 		colorsOkBtn.setPreferredSize(new Dimension(30, 30));
 		colorsOkBtn.setActionCommand(ActionCommands.customizeOkCommand);
@@ -234,14 +230,14 @@ public class OneNoteThread extends Thread {
 		colorsOkBtn.addActionListener(listenerMouse);
 		colorsPanel.add(colorsOkBtn);
 
-		// PANNELLO MODIFICA TITOLO
+		// Change Title panel
 		titlePanel.setPreferredSize(new Dimension(300, 50));
 
-		// Field del titolo
+		// text field
 		titleField.setPreferredSize(new Dimension(220, 25));
 		titleField.addKeyListener(new TitleChangeListener(this));
 
-		// Bottone del titolo
+		// Title button
 		titleBtn.setPreferredSize(new Dimension(30, 30));
 		titleBtn.setActionCommand(ActionCommands.titleOkCommand);
 		titleBtn.addActionListener(listenerMouse);
@@ -249,21 +245,22 @@ public class OneNoteThread extends Thread {
 		titleBtn.setContentAreaFilled(false);
 		titleBtn.setOpaque(true);
 
-		// pannello titolo aggiunta elementi
+		// add them to the Change Title panel
 		titlePanel.add(this.titleField);
 		titlePanel.add(this.titleBtn);
 
-		// TextField della nota
+		// text field for a note
 		noteArea.setFont(new Font("Segoe Print", Font.PLAIN, 20));
 		noteAreaContainer.setPreferredSize(new Dimension(290, 250));
 		noteAreaContainer.setBorder(new EmptyBorder(0, 0, 0, 0));
 
-		// pannello centrale aggiunta elementi
+		// add panels to the central panel
 		centerPanel.add(titlePanel);
 		centerPanel.add(colorsPanel);
 		centerPanel.add(this.noteAreaContainer);
+		// END OF CENTRAL PANEL
 
-		// ultime aggiunte al frame
+		// GUI things
 		frame.setResizable(true);
 		frame.getContentPane().add(northPanel, BorderLayout.NORTH);
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);

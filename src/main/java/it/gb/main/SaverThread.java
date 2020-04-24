@@ -31,7 +31,7 @@ public class SaverThread extends Thread {
 				notes.add(item.getData());
 		}
 
-		if (!Main.noteFile.exists()) { // se il file non esiste lo creo
+		if (!Main.noteFile.exists()) {
 			try {
 				Main.noteFile.getCanonicalFile().getParentFile().mkdirs();
 				Main.noteFile.createNewFile();
@@ -47,14 +47,10 @@ public class SaverThread extends Thread {
 			FileOutputStream outToFile;
 			ObjectOutputStream byteStreamToSave;
 
-			// creo un file di output (stesso di prima)
 			outToFile = new FileOutputStream(Main.noteFile);
 
-			// creo uno stream di output che punta al file
 			byteStreamToSave = new ObjectOutputStream(outToFile);
 
-			// scrivo l'oggetto nel file in modo da poterlo recuperare la
-			// prossima volta
 			byteStreamToSave.writeObject((Object) notes);
 			byteStreamToSave.close();
 			outToFile.close();

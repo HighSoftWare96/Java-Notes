@@ -30,7 +30,6 @@ public class NoteThreadMouseListener implements ActionListener {
 			this.instance.showTitlePanel(true);
 			break;
 		case ActionCommands.newNote:
-			// nota nuova solo se c'è il testo nella nota
 			Controller.newNote();
 			break;
 		case ActionCommands.remove:

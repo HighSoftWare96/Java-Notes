@@ -18,17 +18,15 @@ public class Controller {
 	public static HashSet<OneNoteThread> getThreads() {
 		return threads;
 	}
-	
+
+	// this will only create a new note if the last one actually has text (or if there are no other notes)
 	public static void newNote() {
 		if (lastThreadCreated == null || lastThreadCreated.isWithText()) {
-			// se l'ultimo ha del testo allora ne creo una nuova
 			OneNoteThread thread = new OneNoteThread(Main.getFrame());
 			threads.add(thread);
 			thread.start();
-			// è la prima nota creata
 			if (lastThreadCreated == null)
 				thread.setLocation(null);
-			// di fianco all'ultima creata
 			else {
 				Point location = lastThreadCreated.getLocation();
 				location.setLocation(new Point(
@@ -42,7 +40,6 @@ public class Controller {
 	}
 
 	public static void newNote(NoteData data) {
-		// location già prefissata
 		OneNoteThread thread = new OneNoteThread(Main.getFrame(), data);
 		threads.add(thread);
 		thread.start();
@@ -50,7 +47,6 @@ public class Controller {
 	}
 
 	public static void removeNote(OneNoteThread thread) {
-		// se la nota non è vuota posso eliminarla
 		if (thread.isWithText() && JOptionPane.showConfirmDialog(thread.getFrame(), Main.rsBundle.getString("s_delete_text"), Main.rsBundle.getString("s_delete_title"), JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,
 				new ImageIcon(Main.class.getResource("/images/minus_big.png"))) == 0) {

@@ -24,7 +24,6 @@ import it.gb.gui.themes.NoteColors;
 
 public class Main {
 	
-	// locale e insieme di risorse linguistiche
 	private static Locale locale;
 	public static ResourceBundle rsBundle;
 	
@@ -40,14 +39,11 @@ public class Main {
 		notePath = "notes.jnotes";
 		noteFile = new File(notePath);
 		
-		// Impostazione della lingua del programma
 		locale = Locale.getDefault();
 
 		try {
-			// imposto la lingua della risorsa
 			rsBundle = ResourceBundle.getBundle("it.gb.lang.Res", locale);
 		} catch (MissingResourceException e) {
-			// se non la trova metto inglese come predefinito
 			System.out.println("MissingResourceException: setting English language as default");
 			locale = new Locale("en", "US");
 			rsBundle = ResourceBundle.getBundle("it.gb.lang.Res", locale);
@@ -55,8 +51,7 @@ public class Main {
 			e.printStackTrace();
 		}
 			
-		// creazione di una socket fittizia per evitare altre istanze del
-		// programma nel sistema
+		// TODO: this can probably be removed if you can configure the notes file from the command line
 		try {
 			socketOffline = new ServerSocket(8765);
 		} catch (IOException e) {
@@ -64,7 +59,6 @@ public class Main {
 			System.exit(0);
 		}
 		
-		// impostazione della grafica simile al sistema di supporto
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -74,7 +68,6 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				// inizializzo i temi
 				NoteColors.initilize();
 				buildGUI();
 				findNotes();
@@ -82,7 +75,6 @@ public class Main {
 			}
 		});
 		
-		// creazione di un thread che salva ogni 20 secondi
 		new SaverThread().start();
 	}
 
@@ -103,16 +95,11 @@ public class Main {
 
 		try {
 			if (noteFile.exists()) {
-				// recupero i dati
-				// file di input
 				FileInputStream inputFile = new FileInputStream(noteFile);
-				// creazione dello stream di byte da ricevere
 				ObjectInputStream streamInput = new ObjectInputStream(inputFile);
-				// recupero l'array list dal file e lo salvo nell'arraylist
-				// attuale del programma
 				notes = (HashSet<NoteData>) streamInput.readObject();
 				streamInput.close();
-			} else // creo il catalogo da zero
+			} else
 				notes = new HashSet<>();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Errore while initializing data from file", "Critical error",
@@ -125,7 +112,6 @@ public class Main {
 			Controller.newNote(item);
 		}
 
-		// nessuna nota recuperata
 		if (notes.size() == 0)
 			Controller.newNote();
 	}
