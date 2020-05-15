@@ -18,27 +18,27 @@ public class NoteThreadMouseListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		case ActionCommands.closeCommand:
+		case ActionCommands.CLOSE_COMMAND:
 			Controller.exit(0);
 			break;
-		case ActionCommands.titleOkCommand:
+		case ActionCommands.TITLE_OK_COMMAND:
 			this.instance.showTitlePanel(false);
 			break;
-		case ActionCommands.titleChangeCommand:
+		case ActionCommands.TITLE_CHANGE_COMMAND:
 			this.instance.showColorsPanel(false);
 			this.instance.showTitlePanel(true);
 			break;
-		case ActionCommands.newNote:
+		case ActionCommands.NEW_NOTE:
 			Controller.newNote();
 			break;
-		case ActionCommands.remove:
+		case ActionCommands.REMOVE_NOTE:
 			Controller.removeNote(this.instance);
 			break;
-		case ActionCommands.customizeCommand:
+		case ActionCommands.CUSTOMIZE_COMMAND:
 			this.instance.showTitlePanel(false);
 			this.instance.showColorsPanel(true);
 			break;
-		case ActionCommands.customizeOkCommand:
+		case ActionCommands.CUSTOMIZE_OK_COMMAND:
 			this.instance.showColorsPanel(false);
 			break;
 		}

@@ -104,7 +104,7 @@ public class OneNoteThread extends Thread {
 		titleChangeBtn.setContentAreaFilled(false);
 		titleChangeBtn.setOpaque(true);
 		titleChangeBtn.addActionListener(listenerMouse);
-		titleChangeBtn.setActionCommand(ActionCommands.titleChangeCommand);
+		titleChangeBtn.setActionCommand(ActionCommands.TITLE_CHANGE_COMMAND);
 		titleChangeBtn.setToolTipText(Main.rsBundle.getString("t_title"));
 
 		// new note button
@@ -113,7 +113,7 @@ public class OneNoteThread extends Thread {
 		addBtn.setContentAreaFilled(false);
 		addBtn.setOpaque(true);
 		addBtn.setPreferredSize(new Dimension(30, 30));
-		addBtn.setActionCommand(ActionCommands.newNote);
+		addBtn.setActionCommand(ActionCommands.NEW_NOTE);
 		addBtn.setFocusable(false);
 		addBtn.setToolTipText(Main.rsBundle.getString("t_add"));
 
@@ -123,7 +123,7 @@ public class OneNoteThread extends Thread {
 		closeBtn.setContentAreaFilled(false);
 		closeBtn.setOpaque(true);
 		closeBtn.setPreferredSize(new Dimension(30, 30));
-		closeBtn.setActionCommand(ActionCommands.closeCommand);
+		closeBtn.setActionCommand(ActionCommands.CLOSE_COMMAND);
 		closeBtn.setFocusable(false);
 		closeBtn.setToolTipText(Main.rsBundle.getString("t_close"));
 
@@ -133,7 +133,7 @@ public class OneNoteThread extends Thread {
 		removeBtn.setContentAreaFilled(false);
 		removeBtn.setOpaque(true);
 		removeBtn.setPreferredSize(new Dimension(30, 30));
-		removeBtn.setActionCommand(ActionCommands.remove);
+		removeBtn.setActionCommand(ActionCommands.REMOVE_NOTE);
 		removeBtn.setFocusable(false);
 		removeBtn.setToolTipText(Main.rsBundle.getString("t_delete"));
 
@@ -143,7 +143,7 @@ public class OneNoteThread extends Thread {
 		customizeBtn.setBackground(Color.WHITE);
 		customizeBtn.setContentAreaFilled(false);
 		customizeBtn.setOpaque(true);
-		customizeBtn.setActionCommand(ActionCommands.customizeCommand);
+		customizeBtn.setActionCommand(ActionCommands.CUSTOMIZE_COMMAND);
 		customizeBtn.addActionListener(listenerMouse);
 		customizeBtn.setFocusable(false);
 		customizeBtn.setToolTipText(Main.rsBundle.getString("t_customize"));
@@ -200,7 +200,7 @@ public class OneNoteThread extends Thread {
 		// confirm button
 		JButton colorsOkBtn = new JButton(new ImageIcon(this.getClass().getResource("/images/ok.png")));
 		colorsOkBtn.setPreferredSize(new Dimension(30, 30));
-		colorsOkBtn.setActionCommand(ActionCommands.customizeOkCommand);
+		colorsOkBtn.setActionCommand(ActionCommands.CUSTOMIZE_OK_COMMAND);
 		colorsOkBtn.setBackground(Color.WHITE);
 		colorsOkBtn.setContentAreaFilled(false);
 		colorsOkBtn.setOpaque(true);
@@ -216,7 +216,7 @@ public class OneNoteThread extends Thread {
 
 		// Title button
 		titleBtn.setPreferredSize(new Dimension(30, 30));
-		titleBtn.setActionCommand(ActionCommands.titleOkCommand);
+		titleBtn.setActionCommand(ActionCommands.TITLE_OK_COMMAND);
 		titleBtn.addActionListener(listenerMouse);
 		titleBtn.setBackground(Color.WHITE);
 		titleBtn.setContentAreaFilled(false);
